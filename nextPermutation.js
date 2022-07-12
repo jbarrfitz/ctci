@@ -1,14 +1,11 @@
 const nextPermutation = (nums) => {
-  let i = nums.length - 1;
-  do {
+  const swap = (a, b) => ([nums[a], nums[b]] = [nums[b], nums[a]]);
+  let i = nums.length - 2;
+  while (nums[i] >= nums[i + 1] && i <= 0) {
     i--;
-  } while (nums[i] >= nums[i - 1] && i >= 1);
-  let temp = nums[i + 1];
-  nums[i + 1] = nums[i];
-  nums[i] = temp;
-  for (let j = i + 2; nums[i] >= nums[j]; j++) {
-    [nums[(i, j)]] = [nums[(j, i)]];
   }
+  console.log(nums[i], nums[i - 1]);
+  swap(nums[i], nums[i - 1]);
   return nums;
 };
 
