@@ -1,12 +1,28 @@
 const nextPermutation = (nums) => {
-  const swap = (a, b) => ([nums[a], nums[b]] = [nums[b], nums[a]]);
   let i = nums.length - 2;
-  while (nums[i] >= nums[i + 1] && i <= 0) {
+  let j;
+  while (nums[i] >= nums[i + 1]) {
     i--;
   }
-  console.log(nums[i], nums[i - 1]);
-  swap(nums[i], nums[i - 1]);
+  if (i >= 0) {
+    j = nums.length - 1;
+    while (nums[j] <= nums[i]) {
+      j--;
+    }
+    const temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
+    nums.splice(
+      i + 1,
+      nums.length - i,
+      ...nums.splice(i + 1, nums.length - 1 + 1).reverse()
+    );
+  } else {
+    return nums.reverse();
+  }
   return nums;
 };
 
-console.log(nextPermutation([6, 4, 7, 3, 5, 1]));
+console.log(nextPermutation([1, 2, 3]));
+console.log(nextPermutation([1, 3, 2]));
+console.log(nextPermutation([3, 2, 1]));
