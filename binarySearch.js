@@ -1,23 +1,20 @@
-const binarySearch = (arr, value) => {
-  let searchAreaMin = 0;
-  let searchAreaMax = arr.length - 1;
-  let searchMidPoint = Math.floor((searchAreaMin + searchAreaMax) / 2);
+const search = (nums, target) => {
+  let left = 0;
+  let right = nums.length - 1;
 
-  while (searchAreaMax - searchAreaMin > 1) {
-    if (arr[searchMidPoint] === value) return searchMidPoint;
-    if (arr[searchMidPoint] > value) {
-      searchAreaMax = searchMidPoint;
-      searchMidPoint = Math.floor((searchAreaMin + searchAreaMax) / 2);
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (nums[mid] > target) {
+      right = mid - 1;
+    } else if (nums[mid] < target) {
+      left = mid + 1;
     } else {
-      searchAreaMin = searchMidPoint;
-      searchMidPoint = Math.floor((searchAreaMin + searchAreaMax) / 2);
+      return mid;
     }
-    console.log('Min: ', searchAreaMin);
-    console.log('Max: ', searchAreaMax);
-    console.log('Mid: ', searchMidPoint);
   }
-  return 'Value not found.';
+  return -1;
 };
 
-console.log(binarySearch([1, 3, 5, 7, 9, 13, 14, 16], 9));
-console.log(binarySearch([1, 3, 5, 7, 9, 13, 14, 16], 11));
+console.log(search([-1, 0, 3, 5, 9, 12], 9));
+console.log(search([-1, 0, 3, 5, 9, 12], 2));
+console.log(search([5], 5));
