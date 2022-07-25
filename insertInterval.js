@@ -14,7 +14,7 @@ const insert = (intervals, newInterval) => {
     }
   }
   intervals.splice(newStart, newEnd - newStart, newInterval);
-  return JSON.stringify(intervals);
+  return intervals;
 };
 
 console.log(
