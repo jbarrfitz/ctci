@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/wordSearch.js"
+      "program": "${workspaceFolder}/bubbleSort.js"
     }
   ]
 }
