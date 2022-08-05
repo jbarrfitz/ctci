@@ -1,11 +1,14 @@
 const deleteDuplicates = (head) => {
+  if (!head || !head.next) {
+    return head;
+  }
   let currNode = head;
-  let prevNode = null;
-  while (currNode) {
-    if (currNode.val === prevNode?.val || null) {
-      prevNode.next = currNode.next;
+  while (currNode && currNode.next) {
+    if (currNode.next.val === currNode.val) {
+      currNode.next = currNode.next.next;
+    } else {
+      currNode = currNode.next;
     }
-    currNode = currNode.next;
   }
   return head;
 };
