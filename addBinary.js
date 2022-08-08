@@ -9,6 +9,10 @@ const addBinary = (a, b) => {
   while (aDig >= 0 || bDig >= 0) {
     aDigValue = parseInt(a[aDig] ?? 0);
     bDigValue = parseInt(b[bDig] ?? 0);
+    console.log('aDig: ', aDigValue);
+    console.log('bDig: ', bDigValue);
+    console.log('carryOver: ', carryOver);
+
     switch (aDigValue + bDigValue + carryOver) {
       case 3:
         sum = '1' + sum;
@@ -21,6 +25,7 @@ const addBinary = (a, b) => {
       case 1:
         sum = '1' + sum;
         carryOver = 0;
+        break;
       case 0:
         sum = '0' + sum;
         carryOver = 0;
