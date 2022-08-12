@@ -13,13 +13,15 @@ const romanToInt = (s) => {
 
   for (let i = s.length; i > 0; i--) {
     if (vals[s[i - 1]]) {
-      if (vals[s[i - 1]] >= vals[s[i]]) {
+      if (vals[s[i - 1]] >= (vals[s[i]] ?? 0)) {
         sum += vals[s[i - 1]];
+        console.log('sum: (i = ' + i + '): ' + sum);
       } else {
         sum -= vals[s[i - 1]];
+        console.log('sum: (i = ' + i + '): ' + sum);
       }
     } else {
-      sum += vals[s[i - 1]];
+      return sum;
     }
   }
   return sum;
