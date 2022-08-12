@@ -1,0 +1,57 @@
+Shift left (<<)
+  Multiplies the number by 2 * the number of shifts
+  e.g.
+    2 << 1 = 4
+    2 << 2 = 8
+    2 << 3 = 16
+
+Shift right (>>)
+  Floor division by 2
+  9 >> 1 = 4
+  9 >> 2 = 2
+  9 >> 3 = 1
+
+And operator (&)
+  Given two binary digits, x & y yields 1 if BOTH evaluate to 1
+    x & 0 = 0
+    x & 1 = x
+
+Using masks with the And operator
+  A '1' in a mask will leave the existing bit alone
+  a '0' in a mask will turn off the corresponding bit
+    a =         0b101
+    mask =      0b011
+    a & mask =  0b001
+  
+Or operator (|)
+  Given two binary digits, x | y yields 1 if EITHER bit evaluates to 1
+  x | 1 = 1
+  x | 0 = x
+
+Using masks with the Or operator
+  A '1' in a mask will turn the corresponding bit on
+  A '0' in a mask will leave the corresponding bit alone
+  a =           0b010
+  mask =        0b100
+  a | mask =    0b110
+
+  Turn the ith bit on:
+    JAVASCRIPT: const turnOn = (num, i) => num | (1 << i - 1)
+
+Exclusive Or Operator (^)
+  a ^ b yields 1 if either bit, a or b, BUT NOT BOTH, evaluate to 1
+  ^1 flips a bit; ^0 does nothing
+
+  a       b       a ^ b
+  0       0       0       a ^ 0 = a
+  0       1       1       a ^ 1 = !a
+  1       0       1       a ^ 0 = a
+  1       1       0       a ^ 1 = !a
+
+Flip the ith bit:
+  JAVASCRIPT: const flip = (num, i) => num ^ (1 << i - 1)
+
+Query a bit using &1
+  x & 1 leaves the bit unchanged
+  JAVASCRIPT: const query = (num, i) => num & (1 << i - 1)
+

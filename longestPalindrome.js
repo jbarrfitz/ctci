@@ -6,7 +6,7 @@ var longestPalindrome = (s) => {
   let currPalindrome = '';
   let currPalindromeLen = 0;
 
-  for (let i = 1; i < s.length; i++) {
+  for (let i = 1; i < s.length - 1; i++) {
     while (start >= 0 && end < s.length) {
       //check for even-length palindromes
       start = i - 1;
