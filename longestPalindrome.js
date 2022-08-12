@@ -1,38 +1,32 @@
-var longestPalindrome = (s) => {
-  let start = 0;
-  let end = 0;
-  let longestPalLen = 0;
-  let longestPal = '';
-  let currPalindrome = '';
-  let currPalindromeLen = 0;
-
-  for (let i = 1; i < s.length - 1; i++) {
-    while (start >= 0 && end < s.length) {
-      //check for even-length palindromes
-      start = i - 1;
-      end = i;
-      if (s[start] === s[end]) {
-        currPalindromeLen = end - start + 1;
-        currPalindrome = s.substring(start, end + 1);
+const longestPalindrome = (s) => {
+  let longest = 0;
+  let palindrome = s[0];
+  for (i = 0; i < s.length - 1; i++) {
+    let shift = 0;
+    //find odd-length palindromes
+    while (s[i - shift] === s[i + shift] && shift < s.length / 2) {
+      if (shift * 2 + 1 > longest) {
+        longest = shift * 2 + 1;
+        palindrome = s.substring(i - shift, i + shift + 1);
       }
-      //check for odd-length palindromes
-      start = i - 1;
-      start = i + 1;
-      if (s[start] === s[end]) {
-        currPalindromeLen = end - start + 1;
-        currPalindrome = s.substring(start, end + 1);
+      shift++;
+    }
+    //find even-length palindromes
+    let evenShift = 0;
+    while (
+      s[i - evenShift] === s[i + 1 + evenShift] &&
+      evenShift < s.length / 2
+    ) {
+      if ((evenShift + 1) * 2 >= longest) {
+        longest = (evenShift + 1) * 2;
+        palindrome = s.substring(i - evenShift, i + 2 + evenShift);
       }
-      start -= 1;
-      end += 1;
+      evenShift++;
     }
-    if (currPalindromeLen > longestPalLen) {
-      longestPalLen = currPalindromeLen;
-      longestPal = currPalindrome;
-    }
-    currPalindrome = '';
-    currPalindromeLen = 0;
   }
-  return currPalindrome;
+  return palindrome;
 };
 
-console.log(longestPalindrome('abcba'));
+console.log(longestPalindrome('abcdcbafe'));
+console.log(longestPalindrome('asecbddbceed'));
+console.log(longestPalindrome('aa'));
